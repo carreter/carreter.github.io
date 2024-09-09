@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tutorials on willow carretero chavez</title>
+    <link>http://localhost:1313/categories/tutorials/</link>
+    <description>Recent content in Tutorials on willow carretero chavez</description>
+    <generator>Hugo -- 0.133.0</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 18 Aug 2024 20:46:15 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/tutorials/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ROSALIND Series #01 - Intro &#43; DNA</title>
+      <link>http://localhost:1313/posts/rosalind/001-intro/</link>
+      <pubDate>Sun, 18 Aug 2024 20:46:15 -0700</pubDate>
+      <guid>http://localhost:1313/posts/rosalind/001-intro/</guid>
+      <description>What is ROSALIND? Why we solving problems off of it (in Go, no less!)? Come find out as we solve the first problem in the series!</description>
+    </item>
+  </channel>
+</rss>
