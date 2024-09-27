@@ -24,7 +24,12 @@ This problem asks us to take a DNA sequence encoded as a string (i.e. an ordered
 
 Aside from being an easy exercise to get us acquainted with some basic Go syntax, knowing the relative composition of a DNA sequence can be pretty useful! Different regions of DNA will have different densities of each nucleotide.
 
-As a reminder, DNA is a *double* helix, so each nucloetide we read in a sequence is paired to its complement: A with T, and G with C. These two pairings have different strengths, as the A-T pair involves two hydrogen bonds compared to the G-C pair's three hydrogen bonds. As such,regions of DNA with a higher GC content will be harder to pull apart! This has all kinds of implications, but let's set those aside for now to solve the problem.
+As a reminder, DNA is a *double* helix, so each nucloetide we read in a
+sequence is paired to its complement: A with T, and G with C. These two
+pairings have different strengths, as the A-T pair involves two hydrogen
+bonds compared to the G-C pair's three hydrogen bonds. As such, regions
+of DNA with a higher GC content will be harder to pull apart! This has
+all kinds of implications, but let's set those aside for now to solve the problem.
 
 ## Solution
 
@@ -60,5 +65,50 @@ for _, base := range sequence {
 The complete function looks like this:
 
 ```go
+func CountNucleotides(sequence string) map[rune]int {
+    // Initialize count map with zero values.
+    res := map[rune]int{
+        'A': 0,
+        'T': 0,
+        'G': 0,
+        'C': 0,
+    }
 
+    // Iterate over the sequence and count the bases.
+    for _, base := range sequence {
+        res[base] = res[base] + 1
+    }
+
+    return res
+}
 ```
+
+We could just call it a day here and manually paste in the problem data into our source code, but let's be a little cleaner than that!
+
+The data is provided to us as a text file. Let's just go ahead and read it
+in to a string with Go's `os` module:
+
+```go
+import (
+    "fmt"
+    "os"
+)
+
+func main() {
+    // Read in the file as a []byte.
+    b, err := os.ReadFile("rosalind_dna.txt")
+    if err != nil { // Don't forget to handle your errors!
+        panic(err)
+    }
+
+    // Convert []byte to a string and pass it to our function.
+    seq := string(b)
+    freqs := CountNucleotides(seq)
+
+    // Now we just print out the result!
+    fmt.Printf("%d %d %d %d\n", freqs['A'], freqs['C'], freqs['G'], freqs['T'])
+}
+```
+
+And there we have it! Stay tuned for solutions to some harder problems in the ROSALIND database.
+

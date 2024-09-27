@@ -12,8 +12,6 @@ params:
   DateFormat: "January 2, 2006"
   defaultTheme: dark # dark, light
 
-  customJS: "/js/molviewer.js"
-
   profileMode:
     enabled: true
     title: willow carretero chavez
