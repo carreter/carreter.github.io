@@ -1,7 +1,7 @@
 +++ 
 draft = true
 date = 2024-08-18T20:46:15-07:00
-title = "ROSALIND Series #01 - Intro + DNA"
+title = "ROSALIND Series #01 - Intro + Counting DNA Nucleotides"
 description = "What is ROSALIND? Why we solving problems off of it (in Go, no less!)? Come find out as we solve the first problem in the series!"
 tags = ["bioinformatics", "go"]
 categories = ["tutorials"]
@@ -15,6 +15,8 @@ Lately I've found myself with far too much time on my hands and the need to pick
 In this series, we'll be working through problems from [rosalind.info](https://rosalind.info), a collection of bioinformatics practice problems. For no reason in particular other than a recent obsession with the language gained during my time as an intern at Google, we will be solving these problems in [Go](https://go.dev/).
 
 I'll do my best to introduce the basics of the syntax in the first few posts in the series, but I still highly recommend you work through [A Tour of Go](https://go.dev/tour/welcome/1) to get familiar with the language. I'll also try my best to explain biology concepts as they come up, but will assume that you have some familiarty with the basics of the central dogma, what DNA/RNA/proteins are, etc.
+
+You can find the source code for solutions to the problems in [this GitHub repo](TODO). You should definitely try and work through a solution by yourself first, though!
 
 Why don't we dive right in and take a crack at the first problem in the series!
 
@@ -89,6 +91,8 @@ The data is provided to us as a text file. Let's just go ahead and read it
 in to a string with Go's `os` module:
 
 ```go
+package main
+
 import (
     "fmt"
     "os"
