@@ -12,6 +12,11 @@ params:
   DateFormat: "January 2, 2006"
   defaultTheme: dark # dark, light
 
+  assets:
+    favicon: "/img/favicon.ico"
+    favicon16x16: "/img/favicon-16x16.png"
+    favicon32x32: "/img/favicon-32x32.png"
+
   profileMode:
     enabled: true
     title: willow carretero chavez
