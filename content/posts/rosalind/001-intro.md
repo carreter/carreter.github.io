@@ -2,7 +2,7 @@
 draft = false
 date = 2024-11-05T13:09:08-05:00
 title = "ROSALIND Series #01 - Intro + Counting DNA Nucleotides"
-description = "What is ROSALIND? Why we solving problems off of it (in Go, no less!)? Come find out as we solve the first problem in the series!"
+description = "What is ROSALIND? Why are we solving problems off of it (in Go, no less!)? Come find out as we solve the first problem in the series!"
 tags = ["bioinformatics", "go"]
 categories = ["tutorials"]
 series = ["rosalind"]
@@ -16,7 +16,7 @@ In this series, we'll be working through problems from [rosalind.info](https://r
 
 I'll do my best to introduce the basics of the syntax in the first few posts in the series, but I still highly recommend you work through [A Tour of Go](https://go.dev/tour/welcome/1) to get familiar with the language. I'll also try my best to explain biology concepts as they come up, but will assume that you have some familiarty with the basics of the central dogma, what DNA/RNA/proteins are, etc.
 
-You can find the source code for solutions to the problems in [this GitHub repo](TODO). You should definitely try and work through a solution by yourself first, though!
+You can find the source code for solutions to the problems in [this GitHub repo](https://github.com/carreter/rosalind-solutions). You should definitely try and work through a solution by yourself first, though!
 
 Why don't we dive right in and take a crack at the first problem in the series!
 

@@ -12,7 +12,7 @@ series = ["rosalind"]
 
 Welcome to the second entry in the ROSALIND problem series! Today we will be solving two problems: transcribing DNA to RNA and taking the reverse complement of a DNA sequence. This will let us learn some basics of efficient string manipulation in Go.
 
-As always, solutions are in the associated [GitHub repo](TODO).
+As always, solutions are in the associated [GitHub repo](https://github.com/carreter/rosalind-solutions).
 
 ## Problem 1: [Transcribing DNA into RNA](https://rosalind.info/problems/rna/)
 
