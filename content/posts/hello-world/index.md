@@ -1,6 +1,6 @@
 ---
-draft: true
-date: 2024-08-18T20:51:05-07:00
+draft: false
+date: 2024-11-05T13:09:08-05:00
 title: "Hello, world!"
 description: "A quick introduction and setting intentions for this blog."
 ---
