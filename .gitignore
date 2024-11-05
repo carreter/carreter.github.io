@@ -1,1 +1,4 @@
 public/
+.yarn/
+.yarnrc
+.hugo_build.lock
