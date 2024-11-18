@@ -1,8 +1,7 @@
 +++
 title = "ROSALIND Series #02 - DNA to RNA + Reverse Complement"
-date = 2024-09-28T18:29:45-04:00
+date = 2024-11-18T11:49:50-05:00
 description = "Let's implement two extremely common utilities in bioinformatics: transcribing DNA to RNA and taking the reverse complement of a sequence."
-draft = true
 tags = ["bioinformatics", "go"]
 categories = ["tutorials"]
 series = ["rosalind"]
@@ -92,4 +91,68 @@ func DNAToRNA(sequence string) string {
 ```
 
 And that's it! You can use similar code to what is described in the first entry in this series to read in the dataset and output the result.
+
+## Problem 2: [Complementing a Strand of DNA](https://rosalind.info/problems/revc/)
+
+As you probably already know if you've gotten this far in your biology journey, DNA consists of a double helix of two complementary strands of ribonucleuotides connected by phosphodiester bonds. Each strand also has an opposite directionality based on the configuration of these bonds. See the image below, and note that one end (5' end) is decorated with a phosphate group (in orange) and the other (3' end) has a hydroxyl group to which another phosphate base can be added to extend the strand. By convention, DNA is read in the 5' to 3' direction. 
+
+
+![Diagram of DNA structure showing 5' to 3' directionality](./dna-structure.png)
+
+
+This means that when we represent (double-stranded) DNA as a single string of bases, we are also implicitly encoding a complementary bottom strand. For example, the string `ACTCGCTCAGA` in reality looks more like this:
+
+```
+5'-ACTCGCTCAGA-3' ("top" strand)
+   |||||||||||
+3'-TCAGCGAGTCT-5' ("bottom" strand)
+```
+
+The problem at hand is to determine the "reverse complement" of a DNA sequence. That is, given a top strand of bases in 5' to 3' order, what will the bottom strand look like if we also read it in 5' to 3' order?
+
+Let's give it a shot!
+
+## Solution 2
+
+The two steps to our solution are given by the name of the problem: we need to first reverse the DNA string and then find the complement of each base.
+
+As always, let's start with a function signature:[^1]
+
+[^1]: You may have gathered by now that I am a fan of type-driven development. I've found thinking about the types of the inputs and outputs to a given function helps structure larger programs!
+
+```go
+func ReverseComplement(sequence string) string {
+    // TODO: Implement this
+}
+```
+
+As we did in our more efficient approach to problem 1, let's store our result in a `strings.Builder` and iterate over the input sequence. This time, however, we will iterate over the input *backwards* as we want to reverse it!
+
+Then, all that's left to do is to add the complement of the given base to our output. Here's what that might look like:
+
+```go
+func ReverseComplement(sequence string) string {
+	// Initialize a builder to store the result in.
+    builder := strings.Builder{}
+
+    // Iterate over the sequence in reverse, taking the complement of
+    // each base.
+    for i := len(sequence)-1; i >= 0; i-- {
+        switch base := sequence[i]; base {
+        case 'A':
+            builder.WriteRune('T')
+        case 'T':
+            builder.WriteRune('A')
+        case 'G':
+            builder.WriteRune('C')
+        case 'C':
+            builder.WriteRune('G')
+        }
+    }
+
+    return builder.String()
+}
+```
+
+And that's it! Thanks for reading, and see you all next time :)
 
