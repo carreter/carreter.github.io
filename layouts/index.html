@@ -1,0 +1,81 @@
+{{ define "main" }}
+	<div id="viewer" class="fixed top-0 w-full h-full  -z-10"></div>
+	<div class="bg-periwinkle/50 backdrop-blur-sm fixed -z-5 top-0 w-full h-full"></div>
+
+	
+	<script type='text/javascript' src='/js/bio-pv.min.js'></script>
+	<script type='text/javascript'>
+	var options = {
+	  width: 'auto',
+	  height: 'auto',
+	  antialias: true,
+	  quality : 'medium'
+	};
+
+	var viewer = pv.Viewer(document.getElementById('viewer'), options);
+	
+	
+	function loadER() {
+	  pv.io.fetchPdb('1a52.pdb', function(structure) {
+		  var cartoon = viewer.cartoon('protein', structure);
+	      viewer.centerOn(structure);
+	      viewer.fitTo(structure);
+		  viewer.spin(true);
+
+		  colorer = new pv.color.ColorOp(function(atom, out, index) {
+				if (atom.residue().index() < 100) {
+					out[index] = 0.36;
+					out[index+1] = 0.81;
+					out[index+2] = 0.98;
+				} else if (atom.residue().index() < 200) {
+					out[index] = 0.96;
+					out[index+1] = 0.66;
+					out[index+2] = 0.72;
+				} else {
+					out[index] = 1;
+					out[index+1] = 1;
+					out[index+2] = 1;
+				}
+			});
+		  
+		  cartoon.colorBy(colorer);
+	  });
+	}
+	
+	window.addEventListener('resize', () => {
+		viewer.resize(window.innerWidth, window.innerHeight);
+	})
+	
+	document.addEventListener('DOMContentLoaded', loadER);
+	</script>
+
+	<div class="flex flex-col grow justify-center">
+		<div class="flex flex-col sm:flex-row justify-center m-auto font-mono">
+			<img src="/img/avatar.png" class="h-30 w-30 rounded-xl mx-auto m-2 sm:ml-5 sm:mr-2"/>
+			<div class="flex flex-col sm:justify-center text-center m-2 sm:text-left sm:mr-5 sm:ml-2">
+				<h1 class="text-4xl font-bold">{{ strings.ToLower .Site.Params.Author }}</h1>
+
+				<div class="flex flex-wrap justify-center sm:justify-start">
+					{{ range $i, $descriptor := .Site.Params.Descriptors }}
+					<p class="mt-2 mr-2">{{ $descriptor }}</p>
+					{{ if lt $i (math.Sub (len $.Site.Params.Descriptors) 1) }}
+					<p class="mt-2 mr-2">·</p>
+					{{  end  }}
+					{{  end  }}
+				</div>
+			
+				
+				<div class="flex flex-wrap justify-center sm:justify-start  items-center">
+				    {{ range $i, $social := .Site.Params.Socials }}
+				    <p class="mr-2 text-2xl">
+						<a href="{{ $social.link }}"><i class="fa-brands {{ $social.icon }}"></i></a>
+					</p>
+				    {{ if lt $i (math.Sub (len $.Site.Params.Socials) 1) }}
+				    <p class="mr-2">·</p>
+				    {{  end  }}
+				    {{  end  }}
+				</div>
+			</div>
+		</div>
+	</div>
+{{ end }}

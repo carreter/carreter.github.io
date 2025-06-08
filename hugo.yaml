@@ -1,0 +1,40 @@
+baseURL: https://carreteroc.me/
+title: carreteroc.me
+
+params:
+  author: "Willow Carretero Chavez"
+  descriptors:
+  - she/her
+  - biologist
+  - software engineer
+  - nerd
+  socials:
+    - icon: fa-github
+      link: https://github.com/carreter/
+    - icon: fa-bluesky
+      link: https://bsky.app/profile/carreteroc.me
+    - icon: fa-linkedin
+      link: https://www.linkedin.com/in/wcarretero/
+      
+
+disableKinds: ["taxonomy", "term"]
+
+taxonomies:
+  series: series
+  tag: tags
+
+build:
+  buildStats:
+    enable: true
+  cachebusters:
+  - source: assets/notwatching/hugo_stats\.json
+    target: css
+  - source: (postcss|tailwind)\.config\.js
+    target: css
+module:
+  mounts:
+  - source: assets
+    target: assets
+  - disableWatch: true
+    source: hugo_stats.json
+    target: assets/notwatching/hugo_stats.json
