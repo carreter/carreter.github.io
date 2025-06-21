@@ -3,6 +3,8 @@ draft: false
 date: 2024-11-05T13:09:08-05:00
 title: "Hello, world!"
 description: "A quick introduction and setting intentions for this blog."
+tags:
+    - personal
 ---
 
 # Hey everyone!

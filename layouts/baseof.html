@@ -9,24 +9,29 @@
         
         {{ partialCached "css.html" . }}
     </head>
-    <body class="bg-periwinkle text-offblack min-h-screen">
-        <div class="flex flex-col min-h-screen">
-            {{ block "navbar" . }}
-            <div class="bg-periwinkle flex flex-col px-2 min-h-12 sm:flex-row content-center justify-between font-mono">
-                <div class="p-2 content-center"><a href="/">{{ strings.ToLower .Site.Params.Author }}</a></div>
-                <div class="grow mx-2 content-center pt-1"><hr></div>
-                <nav class="flex flex-wrap flex-row-reverse content-center">
-                    {{ range .Site.Sections }}
-                        <a class="mx-2 py-2 h-full hover:bg-darkpurple hover:text-periwinkle content-center" href="{{ .RelPermalink }}">
-                            {{ strings.ToLower .LinkTitle }}
-                        </a>
+    <body class="absolute bg-white min-h-screen w-screen">
+        {{ block "navbar" . }}
+        <div class="fixed z-20 w-full">
+        <div class="bg-darkblue rounded-sm text-white flex flex-col m-5 min-h-12 sm:flex-row content-center justify-between font-mono shadow-offset py-2 px-5">
+            <div class="content-center font-black px-1 sm:mr-3"><a href="/">{{ strings.ToLower .Site.Params.Author.first }} {{strings.ToLower .Site.Params.Author.last }}</a></div>
+            <div class="grow content-center py-1"><hr class="border border-w-5"></div>
+            <nav class="flex justify-end sm:ml-3">
+                {{ range $i, $n := .Site.Params.navLinks }}
+                    <a class="h-full hover:rounded-sm px-1 hover:bg-periwinkle hover:text-darkblue {{ if eq $.Page.RelPermalink .link }}font-bold {{ end }} content-center" href="{{ .link }}">
+                        {{ strings.ToLower .name }}
+                    </a>
+                    {{ if lt $i (sub (len $.Site.Params.navLinks) 1) }}
+                    <p class="h-full content-center">|</p>
                     {{ end }}
-                </nav>
-            </div>
-            {{ end }}
-
-        
-            {{ block "main" . }}
-            {{ end }}
+                {{ end }}
+            </nav>
+        </div>
+        </div>
+        <div class="fixed -top-10 h-35 w-full sm:h-30 z-10 bg-white blur-xs"></div>
+        <div class="relative h-25 w-full sm:h-20"></div>
+        {{ end }}
+  
+        {{ block "main" . }}
+        {{ end }}
     </body>
 </html>

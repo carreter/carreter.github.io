@@ -2,12 +2,15 @@ baseURL: https://carreteroc.me/
 title: carreteroc.me
 
 params:
-  author: "Willow Carretero Chavez"
-  descriptors:
-  - she/her
-  - biologist
-  - software engineer
-  - nerd
+  author:
+    first: "Willow"
+    last: "Carretero Chavez"
+    handle: "carreter"
+    descriptors:
+    - she/her
+    - biologist
+    - software engineer
+    - nerd
   socials:
     - icon: fa-github
       link: https://github.com/carreter/
@@ -15,9 +18,14 @@ params:
       link: https://bsky.app/profile/carreteroc.me
     - icon: fa-linkedin
       link: https://www.linkedin.com/in/wcarretero/
+  navLinks:
+    - name: posts
+      link: /posts/
+    - name: series
+      link: /series/
+    - name: tags
+      link: /tags/
       
-
-disableKinds: ["taxonomy", "term"]
 
 taxonomies:
   series: series

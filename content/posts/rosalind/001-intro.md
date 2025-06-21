@@ -1,7 +1,7 @@
 +++ 
 draft = false
 date = 2024-11-05T13:09:08-05:00
-title = "ROSALIND Series #01 - Intro + Counting DNA Nucleotides"
+title = "Intro + Counting DNA Nucleotides"
 description = "What is ROSALIND? Why are we solving problems off of it (in Go, no less!)? Come find out as we solve the first problem in the series!"
 tags = ["bioinformatics", "go"]
 categories = ["tutorials"]

@@ -1,0 +1,18 @@
+{{ define "main" }}
+    <div class="flex bg-offwhite m-5 px-5 mx-auto sm:max-w-4xl justify-center flex-wrap gap-5">
+    {{ range $term, $weightedPages := .Data.Terms }}
+      <div class="p-2 sm:p-3 rounded-sm bg-periwinkle flex flex-col max-w-80 shadow-offset">
+        <div class="mx-2">
+          <a href="{{ .Page.RelPermalink }}" class="underline decoration-dotted dotted-underline text-xl font-bold font-mono">{{ if eq $.RelPermalink "/tags/" }}#{{ end }}{{ strings.ToLower .Page.LinkTitle }}</a>
+          <p class="font-mono italic text-sm text-gray">
+            entries: {{ len $weightedPages }}
+          </p>
+        </div>
+        {{ if .Page.Description }}
+        <hr class="my-1">
+        <p class="mx-2 text-sm">{{ .Page.Description }}</p>
+        {{ end }}
+      </div>
+    {{ end }}
+    </div>
+{{ end }}

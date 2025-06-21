@@ -1,10 +1,11 @@
 +++
-title = "ROSALIND Series #02 - DNA to RNA + Reverse Complement"
+title = "DNA to RNA + Reverse Complement"
 date = 2024-11-18T11:49:50-05:00
 description = "Let's implement two extremely common utilities in bioinformatics: transcribing DNA to RNA and taking the reverse complement of a sequence."
 tags = ["bioinformatics", "go"]
 categories = ["tutorials"]
 series = ["rosalind"]
+params.icon = "dna-structure.png"
 +++
 
 ## Introduction
@@ -102,7 +103,7 @@ As you probably already know if you've gotten this far in your biology journey, 
 
 This means that when we represent (double-stranded) DNA as a single string of bases, we are also implicitly encoding a complementary bottom strand. For example, the string `ACTCGCTCAGA` in reality looks more like this:
 
-```
+```text
 5'-ACTCGCTCAGA-3' ("top" strand)
    |||||||||||
 3'-TCAGCGAGTCT-5' ("bottom" strand)

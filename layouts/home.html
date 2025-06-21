@@ -1,0 +1,77 @@
+{{ define "main" }}
+	<div id="viewer" class="fixed  w-full h-full blur-xs -z-10"></div>
+
+	
+	<script type='text/javascript' src='/js/bio-pv.min.js'></script>
+	<script type='text/javascript'>
+	var options = {
+	  width: 'auto',
+	  height: 'auto',
+	  antialias: true,
+	  quality : 'medium',
+	  background: '#dde6fe'
+	};
+
+	var viewerDOM = document.getElementById('viewer');
+	var viewer = pv.Viewer(viewerDOM, options);
+	
+	
+	function loadER() {
+	  pv.io.fetchPdb('1a52.pdb', function(structure) {
+		  var cartoon = viewer.cartoon('protein', structure);
+	      viewer.centerOn(structure);
+	      viewer.fitTo(structure);
+		  viewer.spin(true);
+
+		  colorer = new pv.color.ColorOp(function(atom, out, index) {
+				if (atom.residue().index() < 100) {
+					out[index] = 0.36;
+					out[index+1] = 0.81;
+					out[index+2] = 0.98;
+				} else if (atom.residue().index() < 200) {
+					out[index] = 0.96;
+					out[index+1] = 0.66;
+					out[index+2] = 0.72;
+				} else {
+					out[index] = 1;
+					out[index+1] = 1;
+					out[index+2] = 1;
+				}
+			});
+		  
+		  cartoon.colorBy(colorer);
+	  });
+	}
+	
+	window.addEventListener('resize', () => {
+		console.log(viewerDOM)
+		viewer.resize(viewerDOM.offsetWidth, viewerDOM.offsetHeight);
+	})
+	
+	document.addEventListener('DOMContentLoaded', loadER);
+	</script>
+
+	<div class="fixed top-0 w-screen h-screen flex justify-center items-center p-5 z-10">
+	<div class="flex rounded-xl flex-col sm:flex-row justify-center max-w-90 sm:max-w-200 p-5 sm:px-7 font-mono bg-periwinkle  shadow-offset">
+   		<img src="/img/avatar.png" class="h-30 w-30  sm:h-40 sm:w-40 rounded-md mx-auto sm:my-auto"/>
+		<div class="h-0.25 my-5 sm:my-0 sm:mx-5 sm:h-50 sm:w-0.25 bg-black shrink-0"></div>
+   		<div class="flex flex-col sm:justify-center text-center sm:text-left">
+   			<h1 class="text-3xl black sm:text-4xl font-bold leading-7 sm:leading-9">{{ strings.ToLower .Site.Params.Author.first }}<br>{{ strings.ToLower .Site.Params.Author.last }}</h1>
+			<h2 class="text-xl sm:text-2xl text-gray font-bold mt-1">@{{ strings.ToLower .Site.Params.Author.Handle }}</h2>
+			<p class="text-sm sm:text-base leading-5 text-gray mt-1">{{ delimit .Site.Params.Author.Descriptors " · " }}</p>
+   		
+   			
+   			<div class="flex flex-wrap justify-center sm:justify-start  items-center">
+   			    {{ range $i, $social := .Site.Params.Socials }}
+   			    <p class="mt-1 mr-2 text-lg ">
+   					<a href="{{ $social.link }}"><i class="fa-brands {{ $social.icon }}"></i></a>
+   				</p>
+   			    {{ if lt $i (math.Sub (len $.Site.Params.Socials) 1) }}
+   			    <p class="mt-1 mr-2">·</p>
+   			    {{  end  }}
+   			    {{  end  }}
+   			</div>
+   		</div>
+	</div>
+	</div>
+{{ end }}

@@ -6,6 +6,51 @@
     --font-mono: "JetBrains Mono", mono;
     --font-sans: "Montserrat", sans;
     --color-darkpurple: #371c4a;
-    --color-offblack: #232024;
+    --color-purple: #9b5aca;
+    --color-black: #232024;
+    --color-gray: #474747;
     --color-periwinkle: #BCCDFE;
+    --color-lavender: #d6b3ff;
+    --color-darkblue: #1e1e2e;
+    --color-white: #dde6fe;
+}
+
+.shadow-offset {
+    box-shadow: 10pt 10pt 10pt rgba(0, 0, 0, 0.15)
+}
+
+.post-content {
+    h2 {
+        font-weight: var(--font-weight-bold);
+        font-size: var(--text-xl);
+    }
+    h3 {
+        font-weight: var(--font-weight-bold);
+        font-size: var(--text-lg);
+    }
+    a {
+        text-decoration: dotted;
+        text-decoration-line: underline;
+    }
+    .highlight {
+        margin: 2pt 2pt 0 2pt;
+    }
+    pre {
+        border-radius: 5pt;
+        width: 100%;
+        padding: 5pt;
+        display: inline-block;
+        overflow: scroll;
+    }
+    img {
+        padding: 5pt;
+        border-radius: 10pt;
+    }
+    .footnotes {
+        font-size: var(--text-sm);
+        ol {
+            margin-left: 1rem;
+            list-style-type: decimal;
+        }
+    }
 }
