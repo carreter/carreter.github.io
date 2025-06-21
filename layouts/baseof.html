@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" charset="utf-8">
+<html lang="en" charset="utf-8" class="dark:invert">
     <head>
         <title>{{ block "title" . }}{{ strings.ToLower .Site.Title }}{{ end }}</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0"/>
         <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
         <script src="https://kit.fontawesome.com/547d30eccb.js" crossorigin="anonymous"></script>
+        {{ if .Param "math" }}
+            {{ partialCached "math.html" . }}
+        {{ end }}
         
         {{ partialCached "css.html" . }}
     </head>
@@ -24,6 +27,21 @@
                     <p class="h-full content-center">|</p>
                     {{ end }}
                 {{ end }}
+                <p class="h-full content-center">|</p>
+                <script type="text/javascript">
+                    window.addEventListener("load", (event) => {
+                        document.documentElement.classList.toggle(  "dark",  localStorage.theme === "dark" ||    (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches),)
+                    });
+                    function toggleDarkMode() {
+                        var status = document.documentElement.classList.toggle("dark")
+                        if (status) {
+                            localStorage.theme = "dark"
+                        } else {
+                            localStorage.theme = "light"
+                        }
+                    }
+                </script>
+                <button onclick="toggleDarkMode()" class="hover:rounded-sm cursor-pointer hover:bg-periwinkle hover:text-darkblue h-full content-center px-1"><i class="fa-solid fa-circle-half-stroke"></i></button>
             </nav>
         </div>
         </div>

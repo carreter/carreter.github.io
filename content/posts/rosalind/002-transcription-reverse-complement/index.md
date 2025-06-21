@@ -1,11 +1,11 @@
 +++
-title = "DNA to RNA + Reverse Complement"
+title = "DNA to RNA + reverse complement"
 date = 2024-11-18T11:49:50-05:00
-description = "Let's implement two extremely common utilities in bioinformatics: transcribing DNA to RNA and taking the reverse complement of a sequence."
+description = "Let's solve the next couple problems in the ROSALIND series and implement two extremely common utilities in bioinformatics: transcribing DNA to RNA and taking the reverse complement of a sequence."
 tags = ["bioinformatics", "go"]
 categories = ["tutorials"]
 series = ["rosalind"]
-params.icon = "dna-structure.png"
+params.seriesentry = 2
 +++
 
 ## Introduction
@@ -39,7 +39,8 @@ func DNAToRNA(sequence string) string {
         if base == 'T' {
             result += "U"
         } else {
-            result += string(base) // Convert base from a rune to a string before appending.
+            // Convert base from a rune to a string before appending.
+            result += string(base)
         }
     }
 
@@ -136,8 +137,8 @@ func ReverseComplement(sequence string) string {
 	// Initialize a builder to store the result in.
     builder := strings.Builder{}
 
-    // Iterate over the sequence in reverse, taking the complement of
-    // each base.
+    // Iterate over the sequence in reverse, taking
+    // the complement of each base.
     for i := len(sequence)-1; i >= 0; i-- {
         switch base := sequence[i]; base {
         case 'A':

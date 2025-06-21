@@ -1,11 +1,12 @@
 +++ 
 draft = false
 date = 2024-11-05T13:09:08-05:00
-title = "Intro + Counting DNA Nucleotides"
+title = "Intro + counting DNA nucleotides"
 description = "What is ROSALIND? Why are we solving problems off of it (in Go, no less!)? Come find out as we solve the first problem in the series!"
 tags = ["bioinformatics", "go"]
 categories = ["tutorials"]
 series = ["rosalind"]
+params.seriesentry = 1
 +++
 
 ## Introduction

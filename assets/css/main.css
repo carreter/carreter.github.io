@@ -1,18 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
 @source "hugo_stats.json";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
     --font-mono: "JetBrains Mono", mono;
-    --font-sans: "Montserrat", sans;
+    --font-sans: "Libre Franklin", sans;
     --color-darkpurple: #371c4a;
     --color-purple: #9b5aca;
     --color-black: #232024;
     --color-gray: #474747;
-    --color-periwinkle: #c3d2ff;
+    --color-lightgray: #e9ebf4;
+    --color-periwinkle: #d4deff;
     --color-lavender: #d6b3ff;
     --color-darkblue: #1e1e2e;
-    --color-white: #dde6fe;
+    --color-white: #f7f9ff;
 }
 
 .shadow-offset {
@@ -41,6 +43,7 @@
         padding: 5pt;
         display: inline-block;
         overflow: scroll;
+        font-size: var(--text-sm);
     }
     img {
         padding: 5pt;
@@ -48,9 +51,22 @@
     }
     .footnotes {
         font-size: var(--text-sm);
+        font-style: italic;
         ol {
-            margin-left: 1rem;
+            margin: 0.5rem 0 0.5rem 1.5rem;
             list-style-type: decimal;
         }
+    }
+    blockquote {
+        background-color: var(--color-lightgray);
+        margin: 0 0.5rem;
+        padding: 0.25rem 0.5rem;
+        border-left: 2pt solid var(--color-gray);
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+    mjx-container[display="true"] {
+       margin: .25em 0 ! important
     }
 }

@@ -2,6 +2,7 @@ baseURL: https://carreteroc.me/
 title: carreteroc.me
 
 params:
+  math: true
   author:
     first: "Willow"
     last: "Carretero Chavez"
@@ -46,3 +47,18 @@ module:
   - disableWatch: true
     source: hugo_stats.json
     target: assets/notwatching/hugo_stats.json
+      
+markup:
+  goldmark:
+    extensions:
+      passthrough:
+        delimiters:
+          block:
+          - - \[
+            - \]
+          - - $$
+            - $$
+          inline:
+          - - \(
+            - \)
+        enable: true

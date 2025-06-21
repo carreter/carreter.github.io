@@ -8,7 +8,7 @@
                     {{ time.Format "2006-01-02" .Date }}
                     {{ range .GetTerms "series" }}
                     —
-                    <a href="{{ .RelPermalink }}" class="underline decoration-dotted">series: {{ strings.ToLower .Title }}</a>
+                    <a href="{{ .RelPermalink }}" class="underline decoration-dotted">{{ strings.ToLower .Title }} #{{ fmt.Printf "%03d" $p.Params.seriesentry }}</a>
                     {{ end }}
                     {{ if gt (len (.GetTerms "tags")) 0 }}
                     —
