@@ -2,7 +2,6 @@
   "htmlElements": {
     "tags": [
       "a",
-      "blockquote",
       "body",
       "br",
       "button",
@@ -11,7 +10,6 @@
       "em",
       "h1",
       "h2",
-      "h3",
       "head",
       "hr",
       "html",
@@ -25,7 +23,6 @@
       "p",
       "pre",
       "script",
-      "strong",
       "sup",
       "title"
     ],
@@ -155,16 +152,12 @@
     ],
     "ids": [
       "MathJax-script",
-      "dynamic-programming-solution",
       "fn:1",
       "fnref:1",
       "hey-everyone",
       "introduction",
-      "naive-solution",
-      "personal-updates-and-future-direction-for-the-series",
       "problem-1-transcribing-dna-into-rna",
       "problem-2-complementing-a-strand-of-dna",
-      "problem-4-rabbits-and-recurrence-relations",
       "problem-counting-dna-nucleotides",
       "solution",
       "solution-1",
