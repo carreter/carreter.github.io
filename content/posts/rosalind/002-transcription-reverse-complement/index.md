@@ -6,6 +6,7 @@ tags = ["bioinformatics", "go"]
 categories = ["tutorials"]
 series = ["rosalind"]
 params.seriesentry = 2
+draft = true
 +++
 
 ## Introduction

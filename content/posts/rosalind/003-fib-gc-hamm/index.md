@@ -6,7 +6,7 @@ description: "Next up in the ROSALIND series: recursion, a FASTA parser, and som
 series:
     - rosalind
 tags:
-    - go
+    - julia
     - bioinformatics
 params:
     seriesentry: 3
@@ -20,15 +20,12 @@ scalable GPU/[TPU](https://en.wikipedia.org/wiki/Tensor_Processing_Unit) compute
 ML/AI training applications, I figured it'd be good to keep my bioinformatics/computational
 biology skills sharp by resuming this series.
 
-We're still pretty early on in the [ROSALIND problem tree](https://rosalind.info/problems/tree-view/), so the exercises are not too hard. As such, I'll be fitting a few problems
-into this post and place an extra emphasis on writing idiomatic and performant Go.
-
 Most of the Kubernetes infrastructure I'll be working on at Google (e.g. some open-source
 contributions to [JobSet](https://github.com/kubernetes-sigs/jobset)) will be in Go,
-I will likely write parts of this series in other languages going forward. I've created
-a little [poll](https://strawpoll.com/PKglej37QZp) to see if  my readers have any preference(s).
-[Julia](https://julialang.org/) has definitely caught my eye lately, so expect to see a post
-using that soon.
+I will likely write this series in other languages going forward. I've also found myself
+somewhat frustrated with Go's lack of expressivity and relatively limited
+tooling for functional programming lately. [Julia](https://julialang.org/) has piqued
+my interest, so I'll be trying a couple problems in it here.
 
 Now let's get to it and solve some problems! Don't forget to check the [GitHub repo](https://github.com/carreter/rosalind-solutions) for full solutions if you get stuck.
 
@@ -46,31 +43,26 @@ repeat it here. In short, we're being asked to do the following:
 Let's try and describe this in mathematical notation, with \(F(n)\) representing the population
 of rabbits (in _pairs!_) after \(n\) months.
 
-We begin with 1 pair, so \( F(0) = F(1) = 1. \)
-In this case, rabbits reach reproductive age after
+We begin with 1 pair, so \( F(0) = F(1) = 1. \) In this case, rabbits reach reproductive age after
 1 month; this means that on month \(n\) all rabbit pairs that were already alive at month
 \(n-2\) will each produce \(k\) pairs of offspring, which get added to the previous month's
-population. This lets us write the recurrence relation \[ F(n) = F(n-1) + F(n-2). \]
+population. This lets us write the recurrence relation \[ F(n) = F(n-1) + kF(n-2). \]
 
 ### Naive solution
 
 Once you have a recurrence relation and its base case written down, it's fairly straightforward
-to implement it in code. Here's what this would look like in Go:
+to implement it in code. Here's what this would look like in Julia:
 
-```go
-func Fibonacci(n int, k int) int {
-    // Base case: we start with 1 pair of rabbits that
-    // take a month to start reproducing.
-    if n == 0 || n == 1 {
-        return 1
-    }
-    
-    // Recursive step: each pair of rabbits alive 2 months
-    // ago produce k offspring, which we add to last month's
-    // population.
-    return k * Fibonacci(n-2, k) + Fibonacci(n-1, k)
-}
+```julia
+function fib(n, k)
+    if n ≤ 2
+        1
+    else
+        fib(n-1, k) + k * fib(n-2, k)
+    end
+end
 ```
+
 
 This naive solution, while quite straightforward to implement, has a significant weakness:
 it performs quite poorly as \(n\) gets larger! Each recursive step makes two function
@@ -83,19 +75,24 @@ Let's take a different approach: instead of recursing *downward*, splitting the 
 into smaller and smaller chunks, let's iterate *upward* by starting from a simple case and
 progressively build a solution (i.e.: use [dynamic programming](https://en.wikipedia.org/wiki/Dynamic_programming)).
 
-To apply dynamic programming here, we're going to need to declare a slice `population`, where
-we will store the population after month \(n\) at the corresponding index. We know that
-for the first two months we only have 1 pair, so we can initialize `population` with those values:
-```go
-population := []int{1, 1}
+In this problem, we only need to know what the current and previous months' populations
+are to calculate the next month's value. Julia's [destructuring assignment](https://docs.julialang.org/en/v1/manual/functions/#destructuring-assignment) comes in handy here:
+```julia
+function fib_dp(n, k)
+    if n ≤ 2
+        return 1
+    end
+
+    prev = 1
+    curr = 1
+    for _ in 2:n
+        prev, curr = curr, prev * k + curr
+    end
+    curr
+end
 ```
 
-The problem at hand is now to take a `population` slice of length `n` and append the next month's population to it. Luckily, we have a recurrence relation that tells us exactly how
-to do this: just add the previous two months' populations together!
+This solution will run in a much faster \(O(n)\) time, as we only have to iterate up from 2 to \(n\) one time. It's a pretty shocking difference when plotted:
 
-```go
-population = append(
-    population,
-    population[len(population)-1] + population[len(population-2)]
-)
-```
+![plot of the runtimes of the two implementations](./runtime_plot.svg)
+
