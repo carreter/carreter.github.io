@@ -1,0 +1,17 @@
+{{ define "main" }}
+<div class="p-5">
+<div class="max-w-3xl p-3 sm:mx-auto flex flex-col bg-periwinkle shadow-offset rounded-sm">
+    <div class="mx-2">
+        <h1 class="text-3xl font-mono font-bold ">{{.Title}}</h1>
+        <p class="italic text-gray font-mono">
+        </p>
+        <p class="text-md text-gray">{{ .Description }}</p>
+    </div>
+    <hr class="my-2">
+
+    <div class="post-content shrink flex flex-col gap-2 mx-2">
+    {{.Content}}
+    </div>
+</div>
+</div>
+{{ end }}

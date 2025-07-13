@@ -22,6 +22,10 @@
 }
 
 .post-content {
+    h1 {
+        font-weight: var(--font-weight-bold);
+        font-size: var(--text-2xl);
+    }
     h2 {
         font-weight: var(--font-weight-bold);
         font-size: var(--text-xl);
@@ -33,6 +37,7 @@
     a {
         text-decoration: dotted;
         text-decoration-line: underline;
+        color: var(--color-darkpurple);
     }
     .highlight {
         margin: 2pt 2pt 0 2pt;
@@ -68,5 +73,28 @@
     }
     mjx-container[display="true"] {
        margin: .25em 0 ! important
+    }
+    ol {
+        list-style: decimal;
+        margin-left: 1.5rem;
+    }
+    ul {
+        list-style: outside;
+        margin-left: 1.5rem;
+        li {
+            ::marker {
+                content: "◦ ";
+            }
+            li {
+                ::marker {
+                    content: "- ";
+                }
+                li {
+                    ::marker {
+                        content: "‣ "
+                    }
+                }
+            }
+        }
     }
 }

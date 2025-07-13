@@ -26,6 +26,8 @@ params:
       link: /series/
     - name: tags
       link: /tags/
+    - name: cv
+      link: /cv/
       
 
 taxonomies:
